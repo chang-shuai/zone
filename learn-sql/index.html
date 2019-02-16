@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/zone/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/zone/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/zone/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/zone/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/zone/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/zone/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/zone/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="SQL,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="SQL语句是不区分大小写的，但是行业里习惯将关键字与非关键字用大小写岔开以提高可读性。 1select sysdate from dual; [TOC] 表DDL数据定义语言 数据定义语言 用于操作数据库对象 数据库对象有：表，视图，索引，序列  创建表：123456789create table employee_changshuai(  id NUMBER(4),  name varchar2">
+<meta name="keywords" content="SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL语句命令总结">
+<meta property="og:url" content="https://chang-shuai.github.io/zone/learn-sql/index.html">
+<meta property="og:site_name" content="丁药师的小跟班">
+<meta property="og:description" content="SQL语句是不区分大小写的，但是行业里习惯将关键字与非关键字用大小写岔开以提高可读性。 1select sysdate from dual; [TOC] 表DDL数据定义语言 数据定义语言 用于操作数据库对象 数据库对象有：表，视图，索引，序列  创建表：123456789create table employee_changshuai(  id NUMBER(4),  name varchar2">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-02-16T09:14:36.962Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL语句命令总结">
+<meta name="twitter:description" content="SQL语句是不区分大小写的，但是行业里习惯将关键字与非关键字用大小写岔开以提高可读性。 1select sysdate from dual; [TOC] 表DDL数据定义语言 数据定义语言 用于操作数据库对象 数据库对象有：表，视图，索引，序列  创建表：123456789create table employee_changshuai(  id NUMBER(4),  name varchar2">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/zone/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"hide","offset":12,"b2t":false,"scrollpercent":true,"onmobile":true},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://chang-shuai.github.io/zone/learn-sql/">
+
+
+
+
+
+  <title>SQL语句命令总结 | 丁药师的小跟班</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/zone/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">丁药师的小跟班</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <h1 class="site-subtitle" itemprop="description"></h1>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/zone/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/zone/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/zone/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/zone/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/zone/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://chang-shuai.github.io/zone/zone/learn-sql/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="常帅">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/zone/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="丁药师的小跟班">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">SQL语句命令总结</h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-02-16T17:12:52+08:00">
+                2019-02-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/zone/categories/SQL/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/zone/learn-sql/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/zone/learn-sql/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv">本文总阅读量
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>次
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>SQL语句是不区分大小写的，但是行业里习惯将关键字与非关键字用大小写岔开以提高可读性。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span> <span class="keyword">from</span> dual;</span><br></pre></td></tr></table></figure>
+<p>[TOC]</p>
+<h1 id="表"><a href="#表" class="headerlink" title="表"></a>表</h1><h2 id="DDL数据定义语言"><a href="#DDL数据定义语言" class="headerlink" title="DDL数据定义语言"></a>DDL数据定义语言</h2><ul>
+<li>数据定义语言</li>
+<li>用于操作数据库对象</li>
+<li>数据库对象有：表，视图，索引，序列</li>
+</ul>
+<h3 id="创建表："><a href="#创建表：" class="headerlink" title="创建表："></a>创建表：</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> employee_changshuai(</span><br><span class="line">  <span class="keyword">id</span> <span class="built_in">NUMBER</span>(<span class="number">4</span>),</span><br><span class="line">  <span class="keyword">name</span> varchar2(<span class="number">20</span>),</span><br><span class="line">  gender <span class="built_in">char</span>(<span class="number">1</span>),</span><br><span class="line">  birth <span class="built_in">date</span>,</span><br><span class="line">  salary <span class="built_in">number</span>(<span class="number">6</span>,<span class="number">2</span>),</span><br><span class="line">  job varchar2(<span class="number">30</span>),</span><br><span class="line">  deptno <span class="built_in">number</span>(<span class="number">2</span>)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<h3 id="查看表结构"><a href="#查看表结构" class="headerlink" title="查看表结构"></a>查看表结构</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">desc employee_changshuai;</span><br></pre></td></tr></table></figure>
+<h3 id="删除表"><a href="#删除表" class="headerlink" title="删除表"></a>删除表</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> employee_changshuai;</span><br></pre></td></tr></table></figure>
+<h3 id="默认值建表"><a href="#默认值建表" class="headerlink" title="默认值建表"></a>默认值建表</h3><p>为字段添加默认值选项或非空约束</p>
+<ul>
+<li>默认值：数据库中无论字段是什么类型，默认值都是 <code>null</code>，可以使用 <code>DEFAULT</code> 关键字为字段单独指定默认值。<br><strong>字符串的字面量是使用单引号括起来的，并且字符串的字面量区分大小写的。</strong></li>
+<li><code>NOT NULL</code> 约束可以要求某个字段不允许为空。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> employee_chsh(</span><br><span class="line"> <span class="keyword">id</span> <span class="built_in">number</span>(<span class="number">4</span>),</span><br><span class="line"> <span class="keyword">name</span> varchar2(<span class="number">20</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line"> gender <span class="built_in">char</span>(<span class="number">1</span>),</span><br><span class="line"> birth <span class="built_in">date</span>,</span><br><span class="line"> salary <span class="built_in">number</span>(<span class="number">6</span>,<span class="number">2</span>),</span><br><span class="line"> job varchar2(<span class="number">30</span>) <span class="keyword">default</span> <span class="string">'CLERK'</span>,</span><br><span class="line"> deptno <span class="built_in">number</span>(<span class="number">2</span>)</span><br><span class="line">);</span><br><span class="line">desc employee_chsh;</span><br></pre></td></tr></table></figure>
+<h3 id="修改表："><a href="#修改表：" class="headerlink" title="修改表："></a>修改表：</h3><h4 id="修改表名"><a href="#修改表名" class="headerlink" title="修改表名"></a>修改表名</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">rename</span> employee_chsh <span class="keyword">to</span> myemp_chsh;</span><br><span class="line"></span><br><span class="line">desc myemp_chsh;</span><br></pre></td></tr></table></figure>
+<h4 id="修改表结构"><a href="#修改表结构" class="headerlink" title="修改表结构"></a>修改表结构</h4><p><strong>添加新字段</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> myemp_chsh</span><br><span class="line"><span class="keyword">add</span>(</span><br><span class="line">  hiredate <span class="built_in">date</span> <span class="keyword">default</span> <span class="keyword">sysdate</span></span><br><span class="line">);</span><br><span class="line">desc myemp_chsh;</span><br></pre></td></tr></table></figure>
+<p><strong>删除现有字段</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> myemp_chsh </span><br><span class="line"><span class="keyword">drop</span>(hiredate);</span><br><span class="line">desc myemp_chsh;</span><br></pre></td></tr></table></figure>
+<p><strong>修改现有字段</strong></p>
+<ul>
+<li><p>修改字段最好是在表中没有数据的情况下进行。</p>
+</li>
+<li><p>可以修改类型，长度，默认值，非空。</p>
+</li>
+<li>表中有数据的话，尽量不改类型，长度尽可能只增不减。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> myemp_chsh</span><br><span class="line"><span class="keyword">modify</span>(</span><br><span class="line">  job varchar2(<span class="number">40</span>) <span class="keyword">default</span> <span class="string">'CLERK'</span></span><br><span class="line">);</span><br><span class="line">DESC myemp_chsh;</span><br></pre></td></tr></table></figure>
+<h3 id="约束"><a href="#约束" class="headerlink" title="约束"></a>约束</h3><h4 id="建表时非空约束"><a href="#建表时非空约束" class="headerlink" title="建表时非空约束"></a>建表时非空约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> employees_chang(</span><br><span class="line">eid <span class="built_in">number</span>(<span class="number">6</span>),</span><br><span class="line"><span class="keyword">name</span> varchar2(<span class="number">30</span>) <span class="keyword">not</span> <span class="literal">null</span>,</span><br><span class="line">salary <span class="built_in">number</span>(<span class="number">7</span>,<span class="number">2</span>),</span><br><span class="line">hiredate <span class="built_in">date</span> <span class="keyword">constraint</span> employees_chang_hiredate_nn <span class="keyword">not</span> <span class="literal">null</span>)</span><br><span class="line"><span class="keyword">desc</span> employees_chang</span><br></pre></td></tr></table></figure>
+<h4 id="修改表时添加非空约束"><a href="#修改表时添加非空约束" class="headerlink" title="修改表时添加非空约束"></a>修改表时添加非空约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> employees_chang</span><br><span class="line"><span class="keyword">modify</span> (eid <span class="built_in">number</span>(<span class="number">6</span>) <span class="keyword">not</span> <span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="取消非空约束"><a href="#取消非空约束" class="headerlink" title="取消非空约束"></a>取消非空约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> employees_chang</span><br><span class="line"><span class="keyword">modify</span> (eid <span class="built_in">number</span>(<span class="number">6</span>) <span class="literal">null</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="唯一性约束"><a href="#唯一性约束" class="headerlink" title="唯一性约束"></a>唯一性约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> employees1_chang(</span><br><span class="line">eid <span class="built_in">number</span>(<span class="number">6</span>) <span class="keyword">unique</span>,</span><br><span class="line"><span class="keyword">name</span> varchar2(<span class="number">30</span>),</span><br><span class="line">email varchar2(<span class="number">50</span>),</span><br><span class="line">salary <span class="built_in">number</span>(<span class="number">7</span>,<span class="number">2</span>),</span><br><span class="line">hiredate <span class="built_in">date</span>,</span><br><span class="line"><span class="keyword">constraint</span> employees1_chang_email_uk <span class="keyword">unique</span>(email)</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">desc</span> employees1_chang</span><br></pre></td></tr></table></figure>
+<h4 id="除了null之外，不可以插入重复值。"><a href="#除了null之外，不可以插入重复值。" class="headerlink" title="除了null之外，不可以插入重复值。"></a>除了null之外，不可以插入重复值。</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> employees1_chang</span><br><span class="line">(eid,<span class="keyword">name</span>,email)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">(<span class="literal">null</span>,<span class="string">'jack'</span>,<span class="string">''</span>)</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> employees1_chang</span><br></pre></td></tr></table></figure>
+<h4 id="添加唯一性约束"><a href="#添加唯一性约束" class="headerlink" title="添加唯一性约束"></a>添加唯一性约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> employees1_chang</span><br><span class="line"><span class="keyword">add</span> <span class="keyword">constraint</span> employees1_chang_name_uk <span class="keyword">unique</span>(<span class="keyword">name</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">delete</span> employees1_chang</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">'jack'</span></span><br></pre></td></tr></table></figure>
+<h4 id="主键约束"><a href="#主键约束" class="headerlink" title="主键约束"></a>主键约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> employees2_chang(</span><br><span class="line">eid <span class="built_in">number</span>(<span class="number">6</span>) primary <span class="keyword">key</span>,</span><br><span class="line"><span class="keyword">name</span> varchar2(<span class="number">30</span>),</span><br><span class="line">email varchar2(<span class="number">50</span>),</span><br><span class="line">salary <span class="built_in">number</span>(<span class="number">7</span>,<span class="number">2</span>),</span><br><span class="line">hiredate <span class="built_in">date</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> employees2_chang</span><br><span class="line">(eid,<span class="keyword">name</span>)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">(<span class="number">3</span>,<span class="string">'jack'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="检查约束"><a href="#检查约束" class="headerlink" title="检查约束"></a>检查约束</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">table</span> employees2_chang</span><br><span class="line"><span class="keyword">add</span> <span class="keyword">constraint</span> employees2_chang_salary_check</span><br><span class="line"><span class="keyword">check</span> (salary <span class="keyword">in</span> (<span class="number">2000</span>,<span class="number">4000</span>))</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> employees2_chang</span><br><span class="line">(eid,salary)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">(<span class="number">101</span>,<span class="number">4000</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> employees2_chang</span><br></pre></td></tr></table></figure>
+<h2 id="DML数据操作语言"><a href="#DML数据操作语言" class="headerlink" title="DML数据操作语言"></a>DML数据操作语言</h2><ul>
+<li>数据操作语言</li>
+<li>用于 增, 删, 改 表中的数据，伴随事务。</li>
+</ul>
+<h3 id="插入新数据"><a href="#插入新数据" class="headerlink" title="插入新数据"></a>插入新数据</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> myemp_chsh </span><br><span class="line">(<span class="keyword">id</span>,<span class="keyword">name</span>,salary,deptno)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">(<span class="number">1</span>,<span class="string">'jack'</span>,<span class="number">3000</span>,<span class="number">10</span>);</span><br></pre></td></tr></table></figure>
+<p><strong>插入日期推荐使用TO_DATE函数</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> myemp_chsh</span><br><span class="line">(<span class="keyword">id</span>,<span class="keyword">name</span>,birth,salary,deptno)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">(<span class="number">2</span>,<span class="string">'rose'</span>,<span class="keyword">to_date</span>(<span class="string">'2008-08-08'</span>,<span class="string">'YYYY-MM-DD'</span>),<span class="number">5000</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="修改表中数据"><a href="#修改表中数据" class="headerlink" title="修改表中数据"></a>修改表中数据</h3><p>在修改时通常要添加 <code>WHERE</code> 子句来限定要修改的记录的条件，这样只会将满足 <code>WHERE</code> 要求的条件的记录进行修改，否则全表所有数据都会被修改！</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> myemp_chsh</span><br><span class="line"><span class="keyword">set</span> salary=<span class="number">6000</span>,deptno=<span class="number">20</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">name</span>=<span class="string">'jack'</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除数据"><a href="#删除数据" class="headerlink" title="删除数据"></a>删除数据</h3><p>删除通常也要添加 <code>WHERE</code> 子句，否则是清空表操作！</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> myemp_chsh</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">name</span> = <span class="string">'jack'</span></span><br></pre></td></tr></table></figure>
+<h2 id="DQL数据查询语言"><a href="#DQL数据查询语言" class="headerlink" title="DQL数据查询语言"></a>DQL数据查询语言</h2><h3 id="基本查询语句"><a href="#基本查询语句" class="headerlink" title="基本查询语句"></a>基本查询语句</h3><p>由 <code>SELECT</code> 子句 <code>FROM</code> 子句构成。</p>
+<ul>
+<li><code>SELECT</code> 子句指定要查询的字段，<code>FROM</code> 指定数据来源。</li>
+<li><code>SELECT</code> 子句中可以出现表中的字段，函数或表达式。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">select</span> ename,job,sal <span class="keyword">from</span> emp_chang </span><br><span class="line"><span class="keyword">select</span> ename,sal*<span class="number">5</span> <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<p><code>WHERE</code> 子句，可以添加过滤条件，用在查询中可以将只满足<br><code>WHERE</code> 条件的记录查询出来</p>
+<p>查看工资大于2000的员工？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal </span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> sal&gt;<span class="number">2000</span></span><br></pre></td></tr></table></figure>
+<p>20号部门的所有员工<br>不等于判断用 <code>&lt;&gt;</code></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> ename,job,sal,deptno <span class="keyword">FROM</span> emp_chang <span class="keyword">WHERE</span> deptno&lt;&gt;<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<h3 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h3><h4 id="CONCAT（C1，C2）"><a href="#CONCAT（C1，C2）" class="headerlink" title="CONCAT（C1，C2）"></a>CONCAT（C1，C2）</h4><p>连接字符串</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(ename,<span class="keyword">concat</span>(<span class="string">':'</span>,sal)) <span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">concat</span>(<span class="keyword">concat</span>(ename,<span class="string">':'</span>),sal) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h4 id="“-”可以同时连接多个字符串"><a href="#“-”可以同时连接多个字符串" class="headerlink" title="“||”可以同时连接多个字符串"></a>“||”可以同时连接多个字符串</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename||<span class="string">':'</span>||sal <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h4 id="LENGTH-ch"><a href="#LENGTH-ch" class="headerlink" title="LENGTH(ch)"></a>LENGTH(ch)</h4><p>查看字符串长度</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,<span class="keyword">length</span> (ename) <span class="keyword">from</span> emp_chang</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> ename <span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">length</span>(ename)&gt;<span class="number">4</span></span><br></pre></td></tr></table></figure>
+<h4 id="UPPER-LOWER-INITCAP"><a href="#UPPER-LOWER-INITCAP" class="headerlink" title="UPPER, LOWER, INITCAP"></a>UPPER, LOWER, INITCAP</h4><p>转换大写，小写，首字母大写<br><strong>dual: 伪表。当查询的内容不是任何表中的内容时使用。</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">upper</span>(<span class="string">'helloworld'</span>),</span><br><span class="line"><span class="keyword">lower</span>(<span class="string">'HELLOWORLD'</span>),</span><br><span class="line">initcap(<span class="string">'hello world'</span>)</span><br><span class="line"><span class="keyword">from</span> dual</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> ename,sal,deptno <span class="keyword">from</span> emp_chang <span class="keyword">where</span> ename=<span class="keyword">upper</span>(<span class="string">'scott'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="TRIM-LTRIM-RTRIN"><a href="#TRIM-LTRIM-RTRIN" class="headerlink" title="TRIM, LTRIM, RTRIN"></a>TRIM, LTRIM, RTRIN</h4><p>去除字符串两边，左边，右边的指定内容</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">trim</span>(<span class="string">'e'</span> <span class="keyword">from</span> <span class="string">'eeeeeeliteeeeee'</span>) <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">ltrim</span>(<span class="string">'eeeeffffsssfesfeliteseffed'</span>,<span class="string">'efs'</span>) <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">rtrim</span>(<span class="string">'eeeeffffsssfesfeliteseffef'</span>,<span class="string">'efs'</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="LPAD-RPAD"><a href="#LPAD-RPAD" class="headerlink" title="LPAD RPAD"></a>LPAD RPAD</h4><p>补位函数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> rpad(ename,<span class="number">10</span>,<span class="string">' '</span>) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h4 id="SUBSTR-ch-m-n"><a href="#SUBSTR-ch-m-n" class="headerlink" title="SUBSTR(ch,m,n)"></a>SUBSTR(ch,m,n)</h4><ul>
+<li>截取字符串，从第m个字符开始截取n个字符。</li>
+<li>n不指定则是截取到末尾，n超过实际范围可以截取的个数也是截取到末尾。m若是负数，则是从倒数位置开始截取。</li>
+<li>数据库下标都是从1开始。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">substr</span>(<span class="string">'thinking in java'</span>,<span class="number">-7</span>,<span class="number">2</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="INSTR-ch1-ch2-m-n"><a href="#INSTR-ch1-ch2-m-n" class="headerlink" title="INSTR (ch1,ch2,m,n)"></a>INSTR (ch1,ch2,m,n)</h4><ul>
+<li>查看ch2在ch1中的位置，m表示从哪里开始查找，n表示第几次出现</li>
+<li>m，n不写默认都是1</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">instr</span>(<span class="string">'thinking in java'</span>,<span class="string">'in'</span>,<span class="number">4</span>,<span class="number">2</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h3 id="数字函数"><a href="#数字函数" class="headerlink" title="数字函数"></a>数字函数</h3><h4 id="ROUND-n-m"><a href="#ROUND-n-m" class="headerlink" title="ROUND(n[,m])"></a>ROUND(n[,m])</h4><p>四舍五入</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">round</span> (<span class="number">45.678</span>,<span class="number">2</span>) <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">round</span> (<span class="number">45.678</span>) <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">round</span> (<span class="number">45.678</span>,<span class="number">-1</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="TRUNC-n-m"><a href="#TRUNC-n-m" class="headerlink" title="TRUNC(n[,m])"></a>TRUNC(n[,m])</h4><p>截取字符串</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> trunc (<span class="number">45.678</span>,<span class="number">2</span>) <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">select</span> trunc (<span class="number">45.678</span>) <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">select</span> trunc (<span class="number">55.678</span>,<span class="number">-1</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="MOD-m-n"><a href="#MOD-m-n" class="headerlink" title="MOD(m,n)"></a>MOD(m,n)</h4><p>求余</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename , <span class="keyword">mod</span>(sal,<span class="number">1000</span>) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h4 id="CEIL-n-和FLOOR-n"><a href="#CEIL-n-和FLOOR-n" class="headerlink" title="CEIL(n)和FLOOR(n)"></a>CEIL(n)和FLOOR(n)</h4><p>向上取整和向下取整</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">ceil</span> (<span class="number">45.678</span>) <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">floor</span> (<span class="number">45.678</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h3 id="日期类型"><a href="#日期类型" class="headerlink" title="日期类型"></a>日期类型</h3><h4 id="SYSDATE"><a href="#SYSDATE" class="headerlink" title="SYSDATE"></a>SYSDATE</h4><p>对应一个内置的函数，返回一个DATE类型的</p>
+<p>当前系统时间。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span> <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="SYSTIMESTAMP"><a href="#SYSTIMESTAMP" class="headerlink" title="SYSTIMESTAMP"></a>SYSTIMESTAMP</h4><p>返回一个时间戳类型的当前系统时间。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> systimestamp <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="TO-DATE"><a href="#TO-DATE" class="headerlink" title="TO_DATE()"></a>TO_DATE()</h4><p>可以将一个字符串按照给定的日期格式转换为DATE</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">to_date</span>(<span class="string">'1992-8-3'</span>,<span class="string">'YYYY-MM-DD'</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="日期计算"><a href="#日期计算" class="headerlink" title="日期计算"></a>日期计算</h4><ul>
+<li>对一个日期加减一个数字，结果相当于加减了天。</li>
+<li>两个日期之间相减差为相差的天数。</li>
+<li>两个日期可以比大小，越晚的越大。</li>
+</ul>
+<p>一共活了多少天</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sysdate</span>-<span class="keyword">to_date</span>(<span class="string">'1992-7-1'</span>,<span class="string">'yyyy-mm-dd'</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="TO-CHAR"><a href="#TO-CHAR" class="headerlink" title="TO_CHAR()"></a>TO_CHAR()</h4><p>将日期按照指定格式转换为字符串</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,to_char(hiredate,<span class="string">'yyyy"年"mm"月"dd"日"'</span>) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<p><code>YY</code> 与 <code>RR</code> 在 <code>TO_DATE</code> 函数中将2位数字解析为DATE时是有所区别的：</p>
+<ul>
+<li><code>YY</code>：不关注世纪，默认本世纪</li>
+<li><code>RR</code>：自行判定世纪</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> </span><br><span class="line">to_char(<span class="keyword">to_date</span>(<span class="string">'50-05-01'</span>,<span class="string">'RR-MM-DD'</span>),<span class="string">'YYYY-MM-DD'</span>)</span><br><span class="line"><span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="LAST-DAY-date"><a href="#LAST-DAY-date" class="headerlink" title="LAST_DAY(date)"></a>LAST_DAY(date)</h4><p>返回给定日期所在月的月底日期</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">last_day</span>(<span class="keyword">sysdate</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="ADD-MONTHS-date-i"><a href="#ADD-MONTHS-date-i" class="headerlink" title="ADD_MONTHS(date,i)"></a>ADD_MONTHS(date,i)</h4><p>对指定日期加指定的月，若i是负数则是减去。</p>
+<p>查看每个员工入职20周年纪念日</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,add_months(hiredate,<span class="number">12</span>*<span class="number">20</span>) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h4 id="MONTHS-BETWEEN-date1-date2"><a href="#MONTHS-BETWEEN-date1-date2" class="headerlink" title="MONTHS_BETWEEN(date1,date2)"></a>MONTHS_BETWEEN(date1,date2)</h4><p>计算两个两个日期之间相差多少个月</p>
+<p>查看每个员工入职至今共多少个月？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,trunc(months_between(<span class="keyword">sysdate</span>,hiredate)) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h4 id="NEXT-DAY-date-i"><a href="#NEXT-DAY-date-i" class="headerlink" title="NEXT_DAY(date,i)"></a>NEXT_DAY(date,i)</h4><p>返回给定日期第二天开始一周内的指定周几的日期。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> next_day(<span class="keyword">sysdate</span> ,<span class="number">3</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="LEAST-GREATEST"><a href="#LEAST-GREATEST" class="headerlink" title="LEAST(), GREATEST()"></a>LEAST(), GREATEST()</h4><p>求最小值与最大值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">least</span>(<span class="keyword">sysdate</span>,<span class="keyword">to_date</span>(<span class="string">'2008-08-08'</span>,<span class="string">'yyyy-mm-dd'</span>)) <span class="keyword">from</span> dual</span><br><span class="line"><span class="keyword">select</span> <span class="keyword">greatest</span> (<span class="keyword">sysdate</span>,<span class="keyword">to_date</span>(<span class="string">'2008-08-08'</span>,<span class="string">'yyyy-mm-dd'</span>)) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h4 id="EXTRACT"><a href="#EXTRACT" class="headerlink" title="EXTRACT()"></a>EXTRACT()</h4><p>获取给定日期指定时间分量对应的值</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">extract</span>(<span class="keyword">year</span> <span class="keyword">from</span> <span class="keyword">sysdate</span>) <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h3 id="判断字段值是否为null"><a href="#判断字段值是否为null" class="headerlink" title="判断字段值是否为null"></a>判断字段值是否为null</h3><p>要使用 <code>IS NULL</code> 或 <code>IS NOT NULL</code>。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> student_chang</span><br><span class="line"><span class="keyword">where</span> gender <span class="keyword">is</span> <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+<p><code>NULL</code> 参与运算的注意事项：</p>
+<ul>
+<li><code>NULL</code> 与字符串连接等于什么也没有做。</li>
+<li><code>NULL</code> 与数字运算结果还是 <code>NULL</code>。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal,comm,sal+comm <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h3 id="空值函数"><a href="#空值函数" class="headerlink" title="空值函数"></a>空值函数</h3><h4 id="NVL-arg1-arg2"><a href="#NVL-arg1-arg2" class="headerlink" title="NVL(arg1,arg2)"></a>NVL(arg1,arg2)</h4><p>若第一个参数为 <code>NULL</code> 函数返回第二个参数，否则直接返回第一个参数</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal,comm,sal+nvl(comm,<span class="number">0</span>) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h4 id="NVL2-arg1-arg2-arg3"><a href="#NVL2-arg1-arg2-arg3" class="headerlink" title="NVL2(arg1,arg2,arg3)"></a>NVL2(arg1,arg2,arg3)</h4><ul>
+<li>若arg1不为 <code>NULL</code>，函数返回arg2</li>
+<li>若arg2为 <code>NULL</code>，函数返回arg3</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,comm,nvl2(comm,<span class="string">'有绩效'</span>,<span class="string">'没有绩效'</span>) <span class="keyword">from</span> emp_chang</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> ename,sal,comm,nvl2(comm,sal+comm,sal) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h3 id="列别名"><a href="#列别名" class="headerlink" title="列别名"></a>列别名</h3><p>当 <code>SELECT</code> 子句中查询的列是一个函数或者表达式时，那么查询出来的结果集中对应的该字段的名字就是这个函数或者表达式的名字。为此可以为这一列添加 <strong>别名</strong>，这样结果集中该字段就使用别名作为该列的名字。若希望别名 <strong>区分大小</strong> 写或者 <strong>含有空格</strong>，那么该 <strong>别名</strong> 可以使用 <strong>双引号</strong> 括起来。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal*<span class="number">12</span> <span class="string">"year sal"</span> <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h3 id="WHERE-条件"><a href="#WHERE-条件" class="headerlink" title="WHERE 条件"></a>WHERE 条件</h3><h4 id="AND-OR关键字"><a href="#AND-OR关键字" class="headerlink" title="AND,OR关键字"></a>AND,OR关键字</h4><p>AND优先级高于OR，可以通过括号提高优先级。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal,job <span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> sal&gt;<span class="number">1000</span> <span class="keyword">and</span> (job=<span class="string">'SALESMAN'</span> <span class="keyword">or</span> job=<span class="string">'CLERK'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="LIKE可以模糊匹配字符串"><a href="#LIKE可以模糊匹配字符串" class="headerlink" title="LIKE可以模糊匹配字符串"></a>LIKE可以模糊匹配字符串</h4><p>支持两个通配符：</p>
+<ul>
+<li><code>%</code> ：任意个字符（0 - 多个）</li>
+<li><code>_</code> ：单一的一个字符</li>
+</ul>
+<p>查看名字第二个字母是A的员工</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal,deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> ename <span class="keyword">like</span> <span class="string">'_A%'</span></span><br></pre></td></tr></table></figure>
+<h4 id="IN-list-与NOT-IN-list"><a href="#IN-list-与NOT-IN-list" class="headerlink" title="IN(list)与NOT IN(list)"></a>IN(list)与NOT IN(list)</h4><p>判断在列表中或者不在列表中。常用在判断子查询的结果。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename ,sal,job</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> job <span class="keyword">in</span> (<span class="string">'CLERK'</span>,<span class="string">'SALESMAN'</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> ename,job</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> deptno <span class="keyword">not</span> <span class="keyword">in</span>(<span class="number">20</span>,<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="BETWEEN…AND…"><a href="#BETWEEN…AND…" class="headerlink" title="BETWEEN…AND…"></a>BETWEEN…AND…</h4><p>判断在一个区间范围内<br>查看工资在1500到3000之间的员工信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal,deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> sal <span class="keyword">between</span> <span class="number">1500</span> <span class="keyword">and</span> <span class="number">3000</span></span><br></pre></td></tr></table></figure>
+<h4 id="ANY-ALL"><a href="#ANY-ALL" class="headerlink" title="ANY, ALL"></a>ANY, ALL</h4><ul>
+<li>配合&gt;,&gt;=,&lt;,&lt;=判断使用</li>
+<li>判断一个列表中的内容是否满足要求</li>
+<li><code>&gt;ANY(list)</code> : 大于列表之一即可（大于最小的）</li>
+<li><code>&gt;ALL(list)</code> : 大于列表所有（大于最大的）</li>
+<li><code>ANY</code> ，<code>ALL</code> 通常用在子查询结果的判断上。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> empno,ename,job,sal,deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> sal&gt;<span class="keyword">any</span>(<span class="number">1500</span>,<span class="number">4000</span>,<span class="number">5000</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="查询条件中使用函数"><a href="#查询条件中使用函数" class="headerlink" title="查询条件中使用函数"></a>查询条件中使用函数</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal,job</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> ename=<span class="keyword">upper</span>(<span class="string">'scott'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="查询条件中使用表达式"><a href="#查询条件中使用表达式" class="headerlink" title="查询条件中使用表达式"></a>查询条件中使用表达式</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal,job</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> sal*<span class="number">12</span>&gt;<span class="number">50000</span></span><br></pre></td></tr></table></figure>
+<h3 id="DISTINCT关键字"><a href="#DISTINCT关键字" class="headerlink" title="DISTINCT关键字"></a>DISTINCT关键字</h3><p>对结果集指定字段值重复的记录行去除。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> job <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<p>对多列去重是指：这些列的值的组合没有重复</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">distinct</span> job ,deptno <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h3 id="ORDER-BY-子句"><a href="#ORDER-BY-子句" class="headerlink" title="ORDER BY 子句"></a>ORDER BY 子句</h3><p>用于结果集排序</p>
+<ul>
+<li><code>ORDER BY</code> 只能写在 <code>DQL</code> 的最后一个子句中</li>
+<li><code>ORDER BY</code> 可以对结果集按照给定字段的值进行升序(ASC)或降序(DESC)排列</li>
+</ul>
+<p>查看公司的工资排名？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal,hiredate</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> hiredate <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
+<p>多字段排序是有优先级的，首先按照第一个字段的排序规则对结果集排序，<br>当第一个字段有重复值时再按照第二个字段的值排序，依次类推。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,deptno,sal</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> deptno,sal <span class="keyword">desc</span></span><br></pre></td></tr></table></figure>
+<p>排序的字段若含有 <code>NULL</code> 值，<code>NULL</code> 被认作最大值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,comm <span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> comm</span><br></pre></td></tr></table></figure>
+<h3 id="聚合函数"><a href="#聚合函数" class="headerlink" title="聚合函数"></a>聚合函数</h3><ul>
+<li>聚合函数也称为：多行函数，分组函数</li>
+<li>聚合函数是用来统计结果集中的数据的</li>
+<li>四个对值进行统计的函数：<code>MAX</code>，<code>MIN</code>，<code>AVG</code>，<code>SUM</code></li>
+<li>一个对记录数统计的函数：<code>COUNT</code></li>
+</ul>
+<p>统计公司工资的最大值与最小值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">max</span>(sal),<span class="keyword">min</span>(sal) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<p>公司的工资总和和平局值？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(sal),<span class="keyword">avg</span>(sal) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<p>查看公司公有多少人</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(ename) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<p>聚合函数忽略 <code>NULL</code> 值。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">sum</span>(comm),<span class="keyword">avg</span>(nvl(comm,<span class="number">0</span>)) <span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">select</span> nvl(comm,<span class="number">0</span>) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<p>统计一张表记录总数常用：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h3 id="GROUP-BY子句"><a href="#GROUP-BY子句" class="headerlink" title="GROUP BY子句"></a>GROUP BY子句</h3><p>GROUP BY子句可以将结果集按照指定字段进行分组，分组原则为该字段值一样的记录看作一组，配合聚合函数可以进行细致的统计。</p>
+<p>查看每个部门的平均工资</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(sal) ,deptno </span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> deptno</span><br></pre></td></tr></table></figure>
+<p>查看每个职位的平均工资与工资总和</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(sal),<span class="keyword">sum</span>(sal),job</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> job</span><br></pre></td></tr></table></figure>
+<p>GROUP BY可以按照多字段分组，分组原则为这个几个字段的组合相同的记录看作一组。</p>
+<p>查看同部门同职位的员工多少人？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*),job,deptno <span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> job,deptno</span><br></pre></td></tr></table></figure>
+<p>查看部门的平均工资，前提是该部门平均工资要高于2000</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(sal) ,deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">avg</span>(sal)&gt;<span class="number">2000</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> deptno</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><code>WHERE</code> 中不能使用聚合函数作为过滤条件，原因在于过滤时机不对。<br><code>WHERE</code> 是在第一次查询表中数据进行过滤的，逐行过滤，将满足条件的记录查询出来。聚合函数是建立在结果集基础上进行统计的。这已经是在 <code>WHERE</code> 之后进行了。</p>
+</blockquote>
+<h3 id="HAVING子句"><a href="#HAVING子句" class="headerlink" title="HAVING子句"></a>HAVING子句</h3><p> <code>HAVING</code> 子句必须在 <code>GROUP BY</code> 子句之后，用来对 <code>GROUP BY</code> 分组后</p>
+<ul>
+<li>对每一个分组进行过滤。</li>
+<li>HAVING可以使用聚合函数并根据结果来取舍分组。</li>
+</ul>
+<p>查看部门的平均工资，前提是该部门平均工资要高于2000</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(sal),deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> deptno</span><br><span class="line"><span class="keyword">having</span> <span class="keyword">avg</span>(sal)&gt;<span class="number">2000</span></span><br></pre></td></tr></table></figure>
+<p>查看平均工资高于2000的部门的最高工资与最低工资分别是多少？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">max</span>(sal),<span class="keyword">min</span>(sal),deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> deptno</span><br><span class="line"><span class="keyword">having</span> <span class="keyword">avg</span>(sal)&gt;<span class="number">2000</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) ,<span class="keyword">avg</span>(sal),job</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> job</span><br><span class="line"><span class="keyword">having</span> <span class="keyword">avg</span>(sal)&gt;<span class="number">2000</span></span><br></pre></td></tr></table></figure>
+<h3 id="关联查询"><a href="#关联查询" class="headerlink" title="关联查询"></a>关联查询</h3><ul>
+<li>关联查询的结果集中字段来自多张表联合查询的结果。</li>
+<li>关联查询的关键在于连接条件，即：表之间数据的对应关系。</li>
+</ul>
+<p>查看每个员工以及其所在部门的名称？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,dname</span><br><span class="line"><span class="keyword">from</span> emp_chang,dept_chang</span><br><span class="line"><span class="keyword">where</span> emp_chang.deptno=dept_chang.deptno</span><br></pre></td></tr></table></figure>
+<p>表名也可以用别名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename,e.deptno,d.dname</span><br><span class="line"><span class="keyword">from</span> emp_chang e,dept_chang d</span><br><span class="line"><span class="keyword">where</span> e.deptno=d.deptno</span><br></pre></td></tr></table></figure>
+<p><strong>关联查询中连接条件要与过滤条件同时成立！</strong></p>
+<p>查看在 NEW YORK工作的员工？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename,d.dname,d.loc</span><br><span class="line"><span class="keyword">from</span> emp_chang e,dept_chang d</span><br><span class="line"><span class="keyword">where</span> e.deptno=d.deptno <span class="keyword">and</span> d.loc=<span class="string">'NEW YORK'</span></span><br></pre></td></tr></table></figure>
+<p><strong>关联查询中不添加连接条件或连接条件无效则会出现笛卡儿积，这个通常是一个无意义的结果集。</strong></p>
+<p>笛卡儿积的记录数是由参与查询的表的记录数成绩得到。</p>
+<p>不满足连接条件的记录是不会被查询出来的。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename,d.dname</span><br><span class="line"><span class="keyword">from</span> emp_chang e,dept_chang d</span><br></pre></td></tr></table></figure>
+<p>查看KING在哪个城市工作</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename,d.loc</span><br><span class="line"><span class="keyword">from</span> emp_chang e,dept_chang d</span><br><span class="line"><span class="keyword">where</span> e.deptno=d.deptno <span class="keyword">and</span> e.ename=<span class="string">'KING'</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><strong>关联查询中N张表关联查询，至少要有N-1个连接条件。</strong></p>
+</blockquote>
+<h4 id="内连接"><a href="#内连接" class="headerlink" title="内连接"></a>内连接</h4><p>内连接也是用来完成关联查询的。多个连接条件用 <code>AND</code> 连接</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename,d.loc</span><br><span class="line"><span class="keyword">from</span> emp_chang e <span class="keyword">join</span> dept_chang d</span><br><span class="line"><span class="keyword">on</span> e.deptno=d.deptno <span class="keyword">and</span> xxx=xxx</span><br><span class="line"><span class="keyword">where</span> e.ename=<span class="string">'KING'</span></span><br></pre></td></tr></table></figure>
+<h4 id="外连接-LEFT-RIGHT-FULL"><a href="#外连接-LEFT-RIGHT-FULL" class="headerlink" title="外连接 LEFT | RIGHT | FULL"></a>外连接 LEFT | RIGHT | FULL</h4><p>外连接在进行关联查询时除了可以将满足连接条件的记录查询出来之外，也可以将不满足连接条件的记录列出来。</p>
+<p>外连接分为：左外连接，右外连接，全部外连接</p>
+<p>左外连接：以 <code>JOIN</code> 左侧表作为驱动表（所有记录都会列出来），那么当驱动表中不满足连接条件的记录来自右侧表中的字段值为 <code>NULL</code>。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename,d.dname</span><br><span class="line"><span class="keyword">from</span> emp_chang e <span class="keyword">left</span> <span class="keyword">outer</span> <span class="keyword">join</span> dept_chang d</span><br><span class="line"><span class="keyword">on</span> e.deptno=d.deptno</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>注意: <code>left outer join</code> 可简写为 <code>left join</code> , 其他外连接方式同</p>
+</blockquote>
+<p><strong>用（+）来实现</strong></p>
+<p>这个+号可以这样来理解： + 表示补充，即哪个表有加号，这个表就是匹配表。如果加号写在右表，左表就是全部显示，所以是左连接。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename,d.dname</span><br><span class="line"><span class="keyword">from</span> emp_chang e,dept_chang d</span><br><span class="line"><span class="keyword">where</span> e.deptno=d.deptno(+)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>关于使用（+）的一些注意事项：</p>
+<ol>
+<li>（+）操作符只能出现在where子句中，并且不能与outer join语法同时使用。</li>
+<li>当使用（+）操作符执行外连接时，如果在where子句中包含有多个条件，则必须在所有条件中都包含（+）操作符</li>
+<li>（+）操作符只适用于列，而不能用在表达式上。</li>
+<li>（+）操作符不能与or和in操作符一起使用。</li>
+<li>（+）操作符只能用于实现左外连接和右外连接，而不能用于实现完全外连接。</li>
+</ol>
+</blockquote>
+<h4 id="自连接"><a href="#自连接" class="headerlink" title="自连接"></a>自连接</h4><p>当前表的一条记录可以对应当前表自己的多条记录，这样的设定就是自连接。<br>自连接保存属性相同的数据，但是之间有存在上下级关系的树状结构数据使用。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename,m.ename</span><br><span class="line"><span class="keyword">from</span> emp_chang e,emp_chang m</span><br><span class="line"><span class="keyword">where</span> e.mgr=m.empno</span><br></pre></td></tr></table></figure>
+<h3 id="子查询"><a href="#子查询" class="headerlink" title="子查询"></a>子查询</h3><p>子查询是一条查询语句，它是嵌套在其他SQL语句之中的，目的是为了外层的SQL语句提供数据。</p>
+<p>DDL，DML，DQL都可以使用子查询。</p>
+<h4 id="WHERE条件中使用子查询"><a href="#WHERE条件中使用子查询" class="headerlink" title="WHERE条件中使用子查询"></a>WHERE条件中使用子查询</h4><p>查看谁的工资高于CLARK？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal <span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> sal&gt;(<span class="keyword">select</span> sal <span class="keyword">from</span> emp_chang <span class="keyword">where</span> ename=<span class="string">'CLARK'</span>)</span><br></pre></td></tr></table></figure>
+<p> – 查看与SMITH同部门的员工</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> (<span class="keyword">select</span> deptno <span class="keyword">from</span> emp_chang <span class="keyword">where</span> ename=<span class="string">'SMITH'</span>)=deptno</span><br></pre></td></tr></table></figure>
+<p>查看谁的工资高于部门平均工资</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> sal&gt;(<span class="keyword">select</span> <span class="keyword">avg</span>(sal)  <span class="keyword">from</span> emp_chang )</span><br></pre></td></tr></table></figure>
+<h4 id="DDL中使用子查询"><a href="#DDL中使用子查询" class="headerlink" title="DDL中使用子查询"></a>DDL中使用子查询</h4><p>可以根据子查询的结果集当作表快速创建出来。</p>
+<p>创建一张表，包含员工的工号，名字，工资，职位，部门号，部门名以及所在地.<br>该表中的数据来自emp_chang,dept_chang</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> employee_chang</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> e.empno,e.ename,e.sal,e.job,e.deptno,d.dname,d.loc</span><br><span class="line"><span class="keyword">from</span> emp_chang e,dept_chang d</span><br><span class="line"><span class="keyword">where</span> e.deptno=d.deptno</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> employee_chang</span><br><span class="line"><span class="keyword">drop</span> <span class="keyword">table</span> employee_chang</span><br></pre></td></tr></table></figure>
+<h4 id="DML中使用子查询"><a href="#DML中使用子查询" class="headerlink" title="DML中使用子查询"></a>DML中使用子查询</h4><p>将SMITH所在部门的员工工资提高10%</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> emp_chang</span><br><span class="line"><span class="keyword">set</span> sal=sal*<span class="number">1.1</span></span><br><span class="line"><span class="keyword">where</span> deptno=(<span class="keyword">select</span> deptno <span class="keyword">from</span> emp_chang <span class="keyword">where</span> ename=<span class="string">'SMITH'</span>)</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<p>查看与MANAGER同部门的其他职位员工</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,job ,deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> deptno <span class="keyword">in</span> (<span class="keyword">select</span> deptno <span class="keyword">from</span> emp_chang <span class="keyword">where</span> job=<span class="string">'MANAGER'</span>)</span><br><span class="line"><span class="keyword">and</span> job&lt;&gt;<span class="string">'MANAGER'</span></span><br></pre></td></tr></table></figure>
+<p>查看比10和20号部门员工工资都高的员工信息</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> sal&gt;<span class="keyword">all</span> (<span class="keyword">select</span> sal  <span class="keyword">from</span> emp_chang <span class="keyword">where</span> deptno <span class="keyword">in</span> (<span class="number">30</span>,<span class="number">20</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="EXISTS关键字"><a href="#EXISTS关键字" class="headerlink" title="EXISTS关键字"></a>EXISTS关键字</h4><p><code>EXISTS</code> 用在过滤条件中，其后跟一个子查询，只要该子查询可以查询出至少一条记录，那么 <code>EXISTS</code> 就认为满足条件。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> deptno,dname <span class="keyword">from</span> dept_chang d</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">exists</span> (<span class="keyword">select</span> * <span class="keyword">from</span> emp_chang e <span class="keyword">where</span> d.deptno=e.deptno)</span><br></pre></td></tr></table></figure>
+<h4 id="HAVING中使用子查询"><a href="#HAVING中使用子查询" class="headerlink" title="HAVING中使用子查询"></a>HAVING中使用子查询</h4><p>查看部门的最低薪水，前提是该部门最低薪水要高于30号部门的最低薪水。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">min</span>(sal),deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> deptno</span><br><span class="line"><span class="keyword">having</span> <span class="keyword">min</span>(sal)&gt;(<span class="keyword">select</span> <span class="keyword">min</span>(sal) <span class="keyword">from</span> emp_chang <span class="keyword">where</span> deptno=<span class="number">30</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="FROM子句中使用子查询"><a href="#FROM子句中使用子查询" class="headerlink" title="FROM子句中使用子查询"></a>FROM子句中使用子查询</h4><p>通常一个多列子查询是当作一张表看待出现在FROM子句中的。</p>
+<p>查看谁的工资高于其所在部门的平均工资？</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> e.ename,e.sal,e.deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang e ,(<span class="keyword">select</span> <span class="keyword">avg</span>(sal) avg_sal,deptno <span class="keyword">from</span> emp_chang <span class="keyword">group</span> <span class="keyword">by</span> deptno) t</span><br><span class="line"><span class="keyword">where</span> e.deptno=t.deptno</span><br><span class="line"><span class="keyword">and</span> e.sal&gt;t.avg_sal</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> e.ename,e.sal,(<span class="keyword">select</span> d.dname <span class="keyword">from</span> dept_chang d <span class="keyword">where</span> d.deptno = e.deptno) dname</span><br><span class="line"><span class="keyword">from</span> emp_chang e</span><br></pre></td></tr></table></figure>
+<h3 id="分页查询"><a href="#分页查询" class="headerlink" title="分页查询"></a>分页查询</h3><p>当查询的数据量非常大的时候，会导致系统资源消耗大，传输速度慢，用户实际也无需这么多数据量。为此，通常的操作是’分段查询’，即分页。</p>
+<p>由于标准SQL中没有对分页语法进行规定，所以分页查询是“方言”，不同数据库分页查询的语句不同。</p>
+<h4 id="ROWNUM：伪列"><a href="#ROWNUM：伪列" class="headerlink" title="ROWNUM：伪列"></a>ROWNUM：伪列</h4><p><code>ROWNUM</code> 不存在于任何表，但是任何表都可以查询该字段，该字段的值是查询结果集中每条记录的行号。</p>
+<p><code>ROWNUM</code> 的值是动态生成的，在查询过程中进行，每当可以从表中查询处一条记录，<code>ROWNUM</code> 字段的值就是该记录的行号，从1开始，逐次递增。</p>
+<p>在使用 <code>ROWNUM</code> 对结果集编行号的过程中不要用 <code>ROWNUM&gt;1</code> 以上数字的做判断，否则将得不到任何结果。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> (<span class="keyword">select</span> <span class="keyword">rownum</span>  rn ,ename,sal,job,deptno <span class="keyword">from</span> emp_chang)</span><br><span class="line"><span class="keyword">where</span> rn <span class="keyword">between</span> <span class="number">6</span> <span class="keyword">and</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<h4 id="分页查询-1"><a href="#分页查询-1" class="headerlink" title="分页查询"></a>分页查询</h4><p>查看工资排名6-10的人</p>
+<ol>
+<li>先排序</li>
+<li>再编号</li>
+<li>最后取范围。</li>
+</ol>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span>(<span class="keyword">select</span> <span class="keyword">rownum</span> rn ,t. * </span><br><span class="line">     <span class="keyword">from</span>(<span class="keyword">select</span> ename,sal </span><br><span class="line">          <span class="keyword">from</span> emp_chang </span><br><span class="line">          <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>) t)</span><br><span class="line"><span class="keyword">where</span> rn <span class="keyword">between</span> <span class="number">6</span> <span class="keyword">and</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+<p>排序后部分编号</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span>(<span class="keyword">select</span> <span class="keyword">rownum</span> rn,t.*</span><br><span class="line">	 <span class="keyword">from</span>(<span class="keyword">select</span> ename,sal,deptno</span><br><span class="line">		  <span class="keyword">from</span> emp_chang</span><br><span class="line">		  <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>) t</span><br><span class="line">	 <span class="keyword">where</span> <span class="keyword">rownum</span>&lt;=<span class="number">10</span>)</span><br><span class="line"><span class="keyword">where</span> rn&gt;=<span class="number">6</span></span><br></pre></td></tr></table></figure>
+<h4 id="计算分页始末编号"><a href="#计算分页始末编号" class="headerlink" title="计算分页始末编号"></a>计算分页始末编号</h4><ul>
+<li>page : 页码</li>
+<li>pageSize : 每页的条目数</li>
+<li>start : <code>(page-1)*pagesize+1</code></li>
+<li>end : <code>pageSize*page</code></li>
+</ul>
+<h3 id="排序函数"><a href="#排序函数" class="headerlink" title="排序函数"></a>排序函数</h3><p>排序函数可以按照给定字段对结果集分组，然后在组内排序，并生成组内编号。</p>
+<h4 id="row-number"><a href="#row-number" class="headerlink" title="row_number()"></a>row_number()</h4><p>生成组内连续且唯一的数字</p>
+<p>查看每个部门的工资排名</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal,deptno,</span><br><span class="line">         row_number() <span class="keyword">over</span>(</span><br><span class="line">         <span class="keyword">partition</span> <span class="keyword">by</span> deptno</span><br><span class="line">         <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>) <span class="keyword">rank</span></span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h4 id="rank"><a href="#rank" class="headerlink" title="rank()"></a>rank()</h4><p>生成组内不连续也不唯一的数字。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"> <span class="keyword">select</span> ename,sal,deptno,</span><br><span class="line">         <span class="keyword">rank</span>() <span class="keyword">over</span>(</span><br><span class="line">         <span class="keyword">partition</span> <span class="keyword">by</span> deptno</span><br><span class="line">         <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>) <span class="keyword">rank</span></span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h4 id="dense-rank"><a href="#dense-rank" class="headerlink" title="dense_rank()"></a>dense_rank()</h4><p>生成组内连续不唯一的数字</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,sal,deptno,</span><br><span class="line">         <span class="keyword">dense_rank</span>() <span class="keyword">over</span>(</span><br><span class="line">         <span class="keyword">partition</span> <span class="keyword">by</span> deptno</span><br><span class="line">         <span class="keyword">order</span> <span class="keyword">by</span> sal <span class="keyword">desc</span>) <span class="keyword">rank</span></span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h4 id="rollup-排序"><a href="#rollup-排序" class="headerlink" title="rollup()排序"></a>rollup()排序</h4><p>对 <code>rollup</code> 的列从右到左以一次少一列的方式进行分组，直到去掉所有列</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> year_id,month_id,day_id,</span><br><span class="line">          <span class="keyword">sum</span>(sales_value)</span><br><span class="line"><span class="keyword">from</span> sales_chang</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span></span><br><span class="line">        <span class="keyword">rollup</span> (year_id,month_id,day_id)</span><br></pre></td></tr></table></figure>
+<h4 id="cube"><a href="#cube" class="headerlink" title="cube()"></a>cube()</h4><p>每种参数组合都进行依次分组，并在一个结果集显示。分组次数为2的参数个数次方。</p>
+<p>全表</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> year_id,month_id,day_id,</span><br><span class="line">          <span class="keyword">sum</span>(sales_value)</span><br><span class="line"><span class="keyword">from</span> sales_chang</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span></span><br><span class="line">        <span class="keyword">cube</span> (year_id,month_id,day_id)</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> year_id,month_id,day_id</span><br></pre></td></tr></table></figure>
+<h4 id="grouping-sets"><a href="#grouping-sets" class="headerlink" title="grouping sets()"></a>grouping sets()</h4><p>可以指定分组方式，然后将这些分组统计的结果并在一个结果集里显示。</p>
+<p>查看每天与每月的营业额</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> year_id,month_id,day_id,<span class="keyword">sum</span>(sales_value)</span><br><span class="line"><span class="keyword">from</span> sales_chang</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span></span><br><span class="line">        <span class="keyword">grouping</span> <span class="keyword">sets</span>(</span><br><span class="line">        (year_id,month_id,day_id),</span><br><span class="line">        (year_id,month_id)</span><br><span class="line">        )</span><br><span class="line"><span class="keyword">order</span> <span class="keyword">by</span> year_id,month_id,day_id</span><br></pre></td></tr></table></figure>
+<h3 id="并集"><a href="#并集" class="headerlink" title="并集"></a>并集</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,job,sal <span class="keyword">from</span> emp_chang <span class="keyword">where</span> job = <span class="string">'MANAGER'</span></span><br><span class="line"><span class="keyword">union</span></span><br><span class="line"><span class="keyword">select</span> ename,job,sal <span class="keyword">from</span> emp_chang <span class="keyword">where</span> sal&gt;=<span class="number">2500</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,job,sal <span class="keyword">from</span> emp_chang <span class="keyword">where</span> job = <span class="string">'MANAGER'</span></span><br><span class="line"><span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line"><span class="keyword">select</span> ename,job,sal <span class="keyword">from</span> emp_chang <span class="keyword">where</span> sal&gt;=<span class="number">2500</span></span><br></pre></td></tr></table></figure>
+<h3 id="交集"><a href="#交集" class="headerlink" title="交集"></a>交集</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,job,sal <span class="keyword">from</span> emp_chang <span class="keyword">where</span> job = <span class="string">'MANAGER'</span></span><br><span class="line"><span class="keyword">intersect</span></span><br><span class="line"><span class="keyword">select</span> ename,job,sal <span class="keyword">from</span> emp_chang <span class="keyword">where</span> sal&gt;=<span class="number">2500</span></span><br></pre></td></tr></table></figure>
+<h3 id="差集"><a href="#差集" class="headerlink" title="差集"></a>差集</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> ename,job,sal <span class="keyword">from</span> emp_chang <span class="keyword">where</span> job = <span class="string">'MANAGER'</span></span><br><span class="line"><span class="keyword">minus</span></span><br><span class="line"><span class="keyword">select</span> ename,job,sal <span class="keyword">from</span> emp_chang <span class="keyword">where</span> sal&gt;=<span class="number">2500</span></span><br></pre></td></tr></table></figure>
+<h1 id="视图"><a href="#视图" class="headerlink" title="视图"></a>视图</h1><p>数据库对象之一</p>
+<p>视图在SQL语句中体现的角色与表相同，但它并非一张真是存在的表，它对应的是一个查询语句的结果集。</p>
+<p>创建一个查看10号部门员工信息的视图：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> ename,sal,job,deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> deptno=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">desc</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> v_emp_chang_dept10</span><br></pre></td></tr></table></figure>
+<ul>
+<li>修改视图就是替换该视图对应的子查询。</li>
+<li>使用 <code>CREATE OR REPLACE</code> 即可。</li>
+<li>若视图不存在就创建，存在则替换。</li>
+<li>视图对应的子查询的字段若有别名，则该视图对应的字段名就是这个别名。</li>
+<li>若子查询的字段含有函数或表达式，那么该字段必须给别名。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">view</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> empno <span class="keyword">id</span>,ename <span class="keyword">name</span>,sal salary ,job,deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> deptno=<span class="number">10</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">desc</span> v_emp_chang_dept10</span><br></pre></td></tr></table></figure>
+<h2 id="DML操作"><a href="#DML操作" class="headerlink" title="DML操作"></a>DML操作</h2><p>对视图进行DML操作就是对视图数据来源的基础表的操作。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> v_emp_chang_dept10</span><br><span class="line">(<span class="keyword">id</span>,<span class="keyword">name</span>,salary,job,deptno)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">(<span class="number">1001</span>,<span class="string">'JACK'</span>,<span class="number">3000</span>,<span class="string">'CLERK'</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h3 id="插入数据"><a href="#插入数据" class="headerlink" title="插入数据"></a>插入数据</h3><p>插入数据时，视图看不到的字段都插入基础表对应字段的默认值，所以不能违反基础表相应字段的约束条件，尤其是看不到的字段的非空约束，否则可能导致插入失败。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">set</span> <span class="keyword">name</span> = <span class="string">'JACKSON'</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1001</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">delete</span> <span class="keyword">from</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span>=<span class="number">1001</span></span><br></pre></td></tr></table></figure>
+<h3 id="“污染”基表"><a href="#“污染”基表" class="headerlink" title="“污染”基表"></a>“污染”基表</h3><p>对视图进行DML操作可能导致对基表数据“污染”<br>即：对视图进行DML操作的数据视图对其不可见，却修改了基表该数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> v_emp_chang_dept10</span><br><span class="line">(<span class="keyword">id</span>,<span class="keyword">name</span>,salary,job,deptno)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">(<span class="number">1002</span>,<span class="string">'ROSE'</span>,<span class="number">3000</span>,<span class="string">'CLERK'</span>,<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">set</span> deptno=<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<h3 id="检查选项"><a href="#检查选项" class="headerlink" title="检查选项"></a>检查选项</h3><p>为视图添加检查选项可以避免对视图进行DML操作时污染基表。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">view</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> empno <span class="keyword">id</span>,ename <span class="keyword">name</span>,sal salary,job ,deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> deptno=<span class="number">10</span></span><br><span class="line"><span class="keyword">with</span> <span class="keyword">check</span> <span class="keyword">option</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>报with check option违例</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">update</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">set</span> deptno=<span class="number">20</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>报with check option违例</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> v_emp_chang_dept10</span><br><span class="line">(<span class="keyword">id</span>,<span class="keyword">name</span>,salary,job,deptno)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">(<span class="number">1001</span>,<span class="string">'JACK'</span>,<span class="number">3000</span>,<span class="string">'CLERK'</span>,<span class="number">20</span>)</span><br></pre></td></tr></table></figure>
+<p>为视图添加只读选项后，则不能对视图进行DML操作。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">or</span> <span class="keyword">replace</span> <span class="keyword">view</span> v_emp_chang_dept10</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> empno <span class="keyword">id</span>,ename <span class="keyword">name</span>,sal salary,job,deptno</span><br><span class="line"><span class="keyword">from</span> emp_chang</span><br><span class="line"><span class="keyword">where</span> deptno=<span class="number">10</span></span><br><span class="line"><span class="keyword">with</span> <span class="keyword">read</span> <span class="keyword">only</span><span class="comment">--只读权限，不能进行DML操作</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> v_emp_chang_dept10</span><br><span class="line">(<span class="keyword">id</span>,<span class="keyword">name</span>,salary,job,deptno)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">(<span class="number">1001</span>,<span class="string">'JACK'</span>,<span class="number">3000</span>,<span class="string">'CLERK'</span>,<span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="数据字典"><a href="#数据字典" class="headerlink" title="数据字典"></a>数据字典</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> object_name <span class="keyword">from</span> user_objects</span><br><span class="line"><span class="keyword">where</span> object_type=<span class="string">'VIEW'</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> table_name <span class="keyword">from</span> user_tables</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> view_name <span class="keyword">from</span> user_views</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">text</span> <span class="keyword">from</span> user_views</span><br><span class="line"><span class="keyword">where</span> view_name=<span class="string">'V_EMP_CHANG_DEPT10'</span></span><br></pre></td></tr></table></figure>
+<h3 id="删除视图"><a href="#删除视图" class="headerlink" title="删除视图"></a>删除视图</h3><ul>
+<li>删除视图中的数据会将基表中对应数据删除。</li>
+<li>但是删除视图本身不会对基表数据产生影响。</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">view</span> v_emp_chang_dept10</span><br></pre></td></tr></table></figure>
+<h2 id="DQL操作"><a href="#DQL操作" class="headerlink" title="DQL操作"></a>DQL操作</h2><p>视图根据对应的子查询不同，分为</p>
+<ul>
+<li>简单视图</li>
+<li>复杂视图。</li>
+</ul>
+<p>当子查询中含有函数，表达式，分组去重，关联查询时，该视图就是一个复杂视图。复杂视图不能进行DML操作。</p>
+<p>创建一个包含每个部门薪资情况的视图</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">view</span> v_emp_chang_sal</span><br><span class="line"><span class="keyword">as</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">avg</span>(e.sal) avg_sal,</span><br><span class="line">          <span class="keyword">sum</span>(e.sal) sum_sal,</span><br><span class="line">          <span class="keyword">min</span>(e.sal) min_sal,</span><br><span class="line">          <span class="keyword">max</span>(e.sal) max_sal,</span><br><span class="line">          d.deptno, d.dname</span><br><span class="line"><span class="keyword">from</span> emp_chang e,dept_chang d</span><br><span class="line"><span class="keyword">where</span> e.deptno=d.deptno</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> d.deptno ,d.dname</span><br></pre></td></tr></table></figure>
+<h1 id="序列"><a href="#序列" class="headerlink" title="序列"></a>序列</h1><p>序列也是数据库对象之一</p>
+<p>作用是生成一系列数字。通常使用它为某表的主键字段提供值使用。</p>
+<h2 id="创建序列"><a href="#创建序列" class="headerlink" title="创建序列"></a>创建序列</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">sequence</span> seq_emp_chang_id</span><br><span class="line"><span class="keyword">start</span> <span class="keyword">with</span> <span class="number">1</span></span><br><span class="line"><span class="keyword">increment</span> <span class="keyword">by</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h2 id="伪例"><a href="#伪例" class="headerlink" title="伪例"></a>伪例</h2><p>序列支持两个伪例：</p>
+<ul>
+<li><code>NEXTVAL</code> ：获取序列下一个数字, <code>NEXTVAL</code> 会导致序列发生步进，且序列是不能回退的。</li>
+<li><code>CURRVAL</code> ：获取序列当前数字, <code>CURRVAL</code> 是获取序列最后一次生成的数字，新创建的序列</li>
+</ul>
+<p>至少在调用一次 <code>NEXTVAL</code> 后才可以使用 <code>CURRVAL</code>。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> seq_emp_chang_id.currval</span><br><span class="line"><span class="keyword">from</span> dual</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> emp_chang</span><br><span class="line">(empno,ename,sal,job,deptno)</span><br><span class="line"><span class="keyword">values</span></span><br><span class="line">(seq_emp_chang_id.nextval,<span class="string">'jj'</span>,<span class="number">3000</span>,<span class="string">'duke'</span>,<span class="number">20</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> emp_chang</span><br></pre></td></tr></table></figure>
+<h2 id="UUID的生成方式"><a href="#UUID的生成方式" class="headerlink" title="UUID的生成方式"></a>UUID的生成方式</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> sys_guid() <span class="keyword">from</span> dual</span><br></pre></td></tr></table></figure>
+<h2 id="删除序列"><a href="#删除序列" class="headerlink" title="删除序列"></a>删除序列</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">drop</span> <span class="keyword">sequence</span> seq_emp_chang_id</span><br></pre></td></tr></table></figure>
+<h1 id="索引"><a href="#索引" class="headerlink" title="索引"></a>索引</h1><h2 id="创建索引"><a href="#创建索引" class="headerlink" title="创建索引"></a>创建索引</h2><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> idx_emp_chang_ename <span class="keyword">on</span> emp_chang(ename)</span><br></pre></td></tr></table></figure>
+<h3 id="复合索引"><a href="#复合索引" class="headerlink" title="复合索引"></a>复合索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> idx_emp_chang_job_sal <span class="keyword">on</span> emp_chang(job,sal)</span><br></pre></td></tr></table></figure>
+<h3 id="创建基于函数的索引"><a href="#创建基于函数的索引" class="headerlink" title="创建基于函数的索引"></a>创建基于函数的索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">index</span> idx_emp_chang_ename_upper <span class="keyword">on</span> emp(<span class="keyword">upper</span>(ename))</span><br></pre></td></tr></table></figure>
+<h3 id="重建索引"><a href="#重建索引" class="headerlink" title="重建索引"></a>重建索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">alter</span> <span class="keyword">index</span> idx_emp_chang_ename <span class="keyword">rebuild</span></span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/zone/tags/SQL/" rel="tag"># SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+      <div id="sidebar-dimmer"></div>
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <p class="site-author-name" itemprop="name">常帅</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/zone/archives/">
+              
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/zone/categories/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/zone/tags/index.html">
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/chang-shuai/zone" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#表"><span class="nav-number">1.</span> <span class="nav-text">表</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DDL数据定义语言"><span class="nav-number">1.1.</span> <span class="nav-text">DDL数据定义语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#创建表："><span class="nav-number">1.1.1.</span> <span class="nav-text">创建表：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#查看表结构"><span class="nav-number">1.1.2.</span> <span class="nav-text">查看表结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除表"><span class="nav-number">1.1.3.</span> <span class="nav-text">删除表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#默认值建表"><span class="nav-number">1.1.4.</span> <span class="nav-text">默认值建表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改表："><span class="nav-number">1.1.5.</span> <span class="nav-text">修改表：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#修改表名"><span class="nav-number">1.1.5.1.</span> <span class="nav-text">修改表名</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改表结构"><span class="nav-number">1.1.5.2.</span> <span class="nav-text">修改表结构</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#约束"><span class="nav-number">1.1.6.</span> <span class="nav-text">约束</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#建表时非空约束"><span class="nav-number">1.1.6.1.</span> <span class="nav-text">建表时非空约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#修改表时添加非空约束"><span class="nav-number">1.1.6.2.</span> <span class="nav-text">修改表时添加非空约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#取消非空约束"><span class="nav-number">1.1.6.3.</span> <span class="nav-text">取消非空约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#唯一性约束"><span class="nav-number">1.1.6.4.</span> <span class="nav-text">唯一性约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#除了null之外，不可以插入重复值。"><span class="nav-number">1.1.6.5.</span> <span class="nav-text">除了null之外，不可以插入重复值。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#添加唯一性约束"><span class="nav-number">1.1.6.6.</span> <span class="nav-text">添加唯一性约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#主键约束"><span class="nav-number">1.1.6.7.</span> <span class="nav-text">主键约束</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#检查约束"><span class="nav-number">1.1.6.8.</span> <span class="nav-text">检查约束</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DML数据操作语言"><span class="nav-number">1.2.</span> <span class="nav-text">DML数据操作语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入新数据"><span class="nav-number">1.2.1.</span> <span class="nav-text">插入新数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改表中数据"><span class="nav-number">1.2.2.</span> <span class="nav-text">修改表中数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除数据"><span class="nav-number">1.2.3.</span> <span class="nav-text">删除数据</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DQL数据查询语言"><span class="nav-number">1.3.</span> <span class="nav-text">DQL数据查询语言</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基本查询语句"><span class="nav-number">1.3.1.</span> <span class="nav-text">基本查询语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字符串函数"><span class="nav-number">1.3.2.</span> <span class="nav-text">字符串函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#CONCAT（C1，C2）"><span class="nav-number">1.3.2.1.</span> <span class="nav-text">CONCAT（C1，C2）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#“-”可以同时连接多个字符串"><span class="nav-number">1.3.2.2.</span> <span class="nav-text">“||”可以同时连接多个字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LENGTH-ch"><span class="nav-number">1.3.2.3.</span> <span class="nav-text">LENGTH(ch)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#UPPER-LOWER-INITCAP"><span class="nav-number">1.3.2.4.</span> <span class="nav-text">UPPER, LOWER, INITCAP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TRIM-LTRIM-RTRIN"><span class="nav-number">1.3.2.5.</span> <span class="nav-text">TRIM, LTRIM, RTRIN</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LPAD-RPAD"><span class="nav-number">1.3.2.6.</span> <span class="nav-text">LPAD RPAD</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SUBSTR-ch-m-n"><span class="nav-number">1.3.2.7.</span> <span class="nav-text">SUBSTR(ch,m,n)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#INSTR-ch1-ch2-m-n"><span class="nav-number">1.3.2.8.</span> <span class="nav-text">INSTR (ch1,ch2,m,n)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数字函数"><span class="nav-number">1.3.3.</span> <span class="nav-text">数字函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ROUND-n-m"><span class="nav-number">1.3.3.1.</span> <span class="nav-text">ROUND(n[,m])</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TRUNC-n-m"><span class="nav-number">1.3.3.2.</span> <span class="nav-text">TRUNC(n[,m])</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MOD-m-n"><span class="nav-number">1.3.3.3.</span> <span class="nav-text">MOD(m,n)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CEIL-n-和FLOOR-n"><span class="nav-number">1.3.3.4.</span> <span class="nav-text">CEIL(n)和FLOOR(n)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期类型"><span class="nav-number">1.3.4.</span> <span class="nav-text">日期类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#SYSDATE"><span class="nav-number">1.3.4.1.</span> <span class="nav-text">SYSDATE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SYSTIMESTAMP"><span class="nav-number">1.3.4.2.</span> <span class="nav-text">SYSTIMESTAMP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TO-DATE"><span class="nav-number">1.3.4.3.</span> <span class="nav-text">TO_DATE()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#日期计算"><span class="nav-number">1.3.4.4.</span> <span class="nav-text">日期计算</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#TO-CHAR"><span class="nav-number">1.3.4.5.</span> <span class="nav-text">TO_CHAR()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LAST-DAY-date"><span class="nav-number">1.3.4.6.</span> <span class="nav-text">LAST_DAY(date)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ADD-MONTHS-date-i"><span class="nav-number">1.3.4.7.</span> <span class="nav-text">ADD_MONTHS(date,i)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#MONTHS-BETWEEN-date1-date2"><span class="nav-number">1.3.4.8.</span> <span class="nav-text">MONTHS_BETWEEN(date1,date2)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NEXT-DAY-date-i"><span class="nav-number">1.3.4.9.</span> <span class="nav-text">NEXT_DAY(date,i)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LEAST-GREATEST"><span class="nav-number">1.3.4.10.</span> <span class="nav-text">LEAST(), GREATEST()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EXTRACT"><span class="nav-number">1.3.4.11.</span> <span class="nav-text">EXTRACT()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断字段值是否为null"><span class="nav-number">1.3.5.</span> <span class="nav-text">判断字段值是否为null</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#空值函数"><span class="nav-number">1.3.6.</span> <span class="nav-text">空值函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#NVL-arg1-arg2"><span class="nav-number">1.3.6.1.</span> <span class="nav-text">NVL(arg1,arg2)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NVL2-arg1-arg2-arg3"><span class="nav-number">1.3.6.2.</span> <span class="nav-text">NVL2(arg1,arg2,arg3)</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列别名"><span class="nav-number">1.3.7.</span> <span class="nav-text">列别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#WHERE-条件"><span class="nav-number">1.3.8.</span> <span class="nav-text">WHERE 条件</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AND-OR关键字"><span class="nav-number">1.3.8.1.</span> <span class="nav-text">AND,OR关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LIKE可以模糊匹配字符串"><span class="nav-number">1.3.8.2.</span> <span class="nav-text">LIKE可以模糊匹配字符串</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IN-list-与NOT-IN-list"><span class="nav-number">1.3.8.3.</span> <span class="nav-text">IN(list)与NOT IN(list)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#BETWEEN…AND…"><span class="nav-number">1.3.8.4.</span> <span class="nav-text">BETWEEN…AND…</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ANY-ALL"><span class="nav-number">1.3.8.5.</span> <span class="nav-text">ANY, ALL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询条件中使用函数"><span class="nav-number">1.3.8.6.</span> <span class="nav-text">查询条件中使用函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查询条件中使用表达式"><span class="nav-number">1.3.8.7.</span> <span class="nav-text">查询条件中使用表达式</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DISTINCT关键字"><span class="nav-number">1.3.9.</span> <span class="nav-text">DISTINCT关键字</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ORDER-BY-子句"><span class="nav-number">1.3.10.</span> <span class="nav-text">ORDER BY 子句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#聚合函数"><span class="nav-number">1.3.11.</span> <span class="nav-text">聚合函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#GROUP-BY子句"><span class="nav-number">1.3.12.</span> <span class="nav-text">GROUP BY子句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HAVING子句"><span class="nav-number">1.3.13.</span> <span class="nav-text">HAVING子句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关联查询"><span class="nav-number">1.3.14.</span> <span class="nav-text">关联查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#内连接"><span class="nav-number">1.3.14.1.</span> <span class="nav-text">内连接</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#外连接-LEFT-RIGHT-FULL"><span class="nav-number">1.3.14.2.</span> <span class="nav-text">外连接 LEFT | RIGHT | FULL</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#自连接"><span class="nav-number">1.3.14.3.</span> <span class="nav-text">自连接</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#子查询"><span class="nav-number">1.3.15.</span> <span class="nav-text">子查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#WHERE条件中使用子查询"><span class="nav-number">1.3.15.1.</span> <span class="nav-text">WHERE条件中使用子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DDL中使用子查询"><span class="nav-number">1.3.15.2.</span> <span class="nav-text">DDL中使用子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DML中使用子查询"><span class="nav-number">1.3.15.3.</span> <span class="nav-text">DML中使用子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#EXISTS关键字"><span class="nav-number">1.3.15.4.</span> <span class="nav-text">EXISTS关键字</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HAVING中使用子查询"><span class="nav-number">1.3.15.5.</span> <span class="nav-text">HAVING中使用子查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FROM子句中使用子查询"><span class="nav-number">1.3.15.6.</span> <span class="nav-text">FROM子句中使用子查询</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分页查询"><span class="nav-number">1.3.16.</span> <span class="nav-text">分页查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ROWNUM：伪列"><span class="nav-number">1.3.16.1.</span> <span class="nav-text">ROWNUM：伪列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分页查询-1"><span class="nav-number">1.3.16.2.</span> <span class="nav-text">分页查询</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#计算分页始末编号"><span class="nav-number">1.3.16.3.</span> <span class="nav-text">计算分页始末编号</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#排序函数"><span class="nav-number">1.3.17.</span> <span class="nav-text">排序函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#row-number"><span class="nav-number">1.3.17.1.</span> <span class="nav-text">row_number()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rank"><span class="nav-number">1.3.17.2.</span> <span class="nav-text">rank()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#dense-rank"><span class="nav-number">1.3.17.3.</span> <span class="nav-text">dense_rank()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#rollup-排序"><span class="nav-number">1.3.17.4.</span> <span class="nav-text">rollup()排序</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cube"><span class="nav-number">1.3.17.5.</span> <span class="nav-text">cube()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#grouping-sets"><span class="nav-number">1.3.17.6.</span> <span class="nav-text">grouping sets()</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并集"><span class="nav-number">1.3.18.</span> <span class="nav-text">并集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#交集"><span class="nav-number">1.3.19.</span> <span class="nav-text">交集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#差集"><span class="nav-number">1.3.20.</span> <span class="nav-text">差集</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#视图"><span class="nav-number">2.</span> <span class="nav-text">视图</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#DML操作"><span class="nav-number">2.1.</span> <span class="nav-text">DML操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#插入数据"><span class="nav-number">2.1.1.</span> <span class="nav-text">插入数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“污染”基表"><span class="nav-number">2.1.2.</span> <span class="nav-text">“污染”基表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#检查选项"><span class="nav-number">2.1.3.</span> <span class="nav-text">检查选项</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据字典"><span class="nav-number">2.1.4.</span> <span class="nav-text">数据字典</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#删除视图"><span class="nav-number">2.1.5.</span> <span class="nav-text">删除视图</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DQL操作"><span class="nav-number">2.2.</span> <span class="nav-text">DQL操作</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#序列"><span class="nav-number">3.</span> <span class="nav-text">序列</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建序列"><span class="nav-number">3.1.</span> <span class="nav-text">创建序列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#伪例"><span class="nav-number">3.2.</span> <span class="nav-text">伪例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#UUID的生成方式"><span class="nav-number">3.3.</span> <span class="nav-text">UUID的生成方式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#删除序列"><span class="nav-number">3.4.</span> <span class="nav-text">删除序列</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#索引"><span class="nav-number">4.</span> <span class="nav-text">索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#创建索引"><span class="nav-number">4.1.</span> <span class="nav-text">创建索引</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#复合索引"><span class="nav-number">4.1.1.</span> <span class="nav-text">复合索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#创建基于函数的索引"><span class="nav-number">4.1.2.</span> <span class="nav-text">创建基于函数的索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#重建索引"><span class="nav-number">4.1.3.</span> <span class="nav-text">重建索引</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">常帅</span>
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      本站访客数
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      人次
+    </span>
+  
+
+  
+    <span class="site-pv">
+      本站总访问量
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      次
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/zone/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zone/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zone/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zone/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zone/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/zone/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/zone/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/zone/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/zone/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/zone/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/zone/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'bufeaKH9LzeRBjKEt3cQdbN6-gzGzoHsz',
+        appKey: 'lSgKBlxXrrTvmjDCuisWREnS',
+        placeholder: '',
+        avatar:'mm',
+        guest_info:guest,
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
